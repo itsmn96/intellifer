@@ -8,10 +8,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   $password = $_POST["password"];
   
 
-    $sql="INSERT INTO `register`(`username`, `phoneno`, `email`, `password`) VALUES ('$username','$phoneno', '$email', '$password')";
-    $result=mysqli_query($conn, $sql);
-    if($result){
-      $statusMsg = '';
+    // $sql="INSERT INTO `register`(`username`, `phoneno`, `email`, `password`) VALUES ('$username','$phoneno', '$email', '$password')";
+    // $result=mysqli_query($conn, $sql);
+    // if($result){
+    //   $statusMsg = '';
+
 
 // File upload path
 $targetDir = "uploads/";
@@ -26,7 +27,7 @@ if( !empty($_FILES["file"]["name"])){
         // Upload file to server
         if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
             // Insert image file name into database
-            $insert = $conn->query("INSERT into images (file_name, uploaded_on) VALUES ('".$fileName."', NOW())");
+            $insert = $conn->query("INSERT into register (username, phoneno, email, password, file) VALUES ('".$username."', '".$phoneno."', '".$email."','".$password."','".$fileName."')");
             if($insert){
                 $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
             }else{
@@ -58,7 +59,7 @@ if( !empty($_FILES["file"]["name"])){
   // else{
   //   echo "Already Exists";
   // }
-  }
+  // }
   
 ?>
 <!doctype html>

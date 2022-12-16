@@ -76,10 +76,11 @@ include 'db.php';
 
     <link href="signin.css" rel="stylesheet">
   </head>
-  <body>
+  <body style=" justify-content: center">
       <form>
-  <table style="border: 2px solid black; margin: 5px;">
+  <table  class="table table-striped">
    <tr>
+      <th>Image</th>
       <th>Username</th>
       <th>Phone Number</th>
       <th>Email</th>
@@ -96,17 +97,24 @@ include 'db.php';
     {
         while($row = $result->fetch_assoc())
         {
+          $imageurl = 'uploads/'.$row["file"];
             ?>
       <?php 
       print "<tr> <td>";
+      print"<img src='$imageurl' alt='' width='200px' height = '200px' />";
+      print"</td> <td>";
+
       echo $row["username"]; 
       print "</td> <td>";
       echo $row["phoneno"]; 
       print "</td> <td>";
       echo $row["email"]; 
       print "</td> <td>"; 
-      print "<a href='delete-process.php?del={$row['username']}'><input type='button' class='submit' value='Delete'/></a>";
+
+      
+      print "<a href='delete-process.php?del={$row['username']}'><input type='button' class='submit btn btn-danger' value='Delete'/></a>";
       print "</td> <tr>";
+
       }
     }
     else {
